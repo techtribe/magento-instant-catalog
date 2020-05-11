@@ -14,6 +14,7 @@ magento2/app/etc/*
 !magento2/.magento/
 !magento2/.docker/config.php
 !magento2/mutagen.sh
+!magento2/docker-compose.yml
 composer/
 db/
 /.DS_Store
