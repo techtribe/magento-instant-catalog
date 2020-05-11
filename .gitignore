@@ -1,5 +1,25 @@
-composer.phar
-/vendor/
+magento2/*
+!magento2/composer.json
+!magento2/composer.lock
+!magento2/app/
+magento2/app/*
+!magento2/app/design
+!magento2/app/code
+!magento2/app/etc
+magento2/app/etc/*
+!magento2/app/etc/config.php
+!magento2/app/etc/EXAMPLE.env.php
+!magento2/phpunit.xml
+!magento2/.magento.app.yaml
+!magento2/.magento/
+!magento2/.docker/config.php
+!magento2/mutagen.sh
+composer/
+db/
+/.DS_Store
+/.idea
+.env
+.DS_Store
 
 # Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
 # You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
