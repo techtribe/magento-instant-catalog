@@ -8,7 +8,7 @@ magento2/app/*
 !magento2/app/etc
 magento2/app/etc/*
 !magento2/app/etc/config.php
-!magento2/app/etc/EXAMPLE.env.php
+!magento2/app/etc/env.php
 !magento2/phpunit.xml
 !magento2/.magento.app.yaml
 !magento2/.magento/
