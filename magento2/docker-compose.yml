@@ -109,7 +109,7 @@ services:
   generic:
     image: alpine
     environment:
-      - PHP_MEMORY_LIMIT=4096M
+      - PHP_MEMORY_LIMIT=2048M
       - UPLOAD_MAX_FILESIZE=64M
       - MAGENTO_ROOT=/app
       - PHP_IDE_CONFIG=serverName=magento_cloud_docker
@@ -119,6 +119,24 @@ services:
       - MAGENTO_CLOUD_VARIABLES=eyJBRE1JTl9FTUFJTCI6ImFkbWluQGV4YW1wbGUuY29tIiwiQURNSU5fUEFTU1dPUkQiOiIxMjMxMjNxIiwiQURNSU5fVVJMIjoiYWRtaW4ifQ==
       - MAGENTO_RUN_MODE=developer
       - 'PHP_EXTENSIONS=bcmath bz2 calendar exif gd gettext intl mysqli pcntl pdo_mysql soap sockets sysvmsg sysvsem sysvshm opcache zip redis xsl sodium'
+  cron:
+    image: 'magento/magento-cloud-docker-php:7.3-cli-1.0'
+    extends: generic
+    hostname: cron.magento2.docker
+    depends_on:
+      - db
+      - redis
+      - elasticsearch
+    volumes:
+      - 'magento-sync:/app:nocopy'
+      - '~/.composer/cache:/root/.composer/cache:delegated'
+    networks:
+      magento:
+        aliases:
+          - cron.magento2.docker
+    environment:
+      CRONTAB: '* * * * * root cd /app && /usr/local/bin/php bin/magento cron:run >> /app/var/log/cron.log'
+    command: run-cron
 volumes:
   magento-sync: {  }
   magento-db: {  }
