@@ -18,7 +18,7 @@ composer install
 bin/magento-docker up
 bash mutagen.sh
 ```
-Now wait about 60 sec for the filesystems to sync (Host and docker filesystems). Then run:
+Now wait about 60 sec for the filesystems to sync (Host and docker filesystems). Then run (This will take ~15min):
 
 ```
 docker-compose run deploy cloud-deploy
@@ -29,7 +29,10 @@ http://magento2.docker & http://magento2.docker/admin
 
 To be able to access the admin panel create a user:
 
-`bin/magento admin:user:create`
+```
+bin/magento-docker bash
+bin/magento admin:user:create
+```
 ### Useful commands
 ```
 bin/magento-docker stop
