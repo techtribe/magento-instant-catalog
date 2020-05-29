@@ -94,7 +94,7 @@ return [
         'magento2.docker'
     ],
     'install' => [
-        'date' => 'Tue, 12 May 2020 06:42:16 +0000'
+        'date' => 'Sun, 24 May 2020 20:00:18 +0000'
     ],
     'static_content_on_demand_in_production' => 0,
     'force_html_minification' => 1,
@@ -156,31 +156,13 @@ return [
                 ]
             ],
             'catalog' => [
-                'search' => [
-                    'engine' => 'elasticsearch6',
-                    'elasticsearch_server_hostname' => 'elasticsearch',
-                    'elasticsearch_server_port' => '9200',
-                    'elasticsearch_index_prefix' => 'magento2',
-                    'elasticsearch_enable_auth' => '0',
-                    'elasticsearch_server_timeout' => '15',
-                    'elasticsearch5_server_hostname' => 'elasticsearch',
-                    'elasticsearch5_server_port' => '9200',
-                    'elasticsearch5_index_prefix' => 'magento2',
-                    'elasticsearch5_enable_auth' => '0',
-                    'elasticsearch5_server_timeout' => '15',
-                    'elasticsearch7_server_hostname' => 'elasticsearch',
-                    'elasticsearch7_server_port' => '9200',
-                    'elasticsearch7_index_prefix' => 'magento2',
-                    'elasticsearch7_enable_auth' => '0',
-                    'elasticsearch7_server_timeout' => '15',
-                    'elasticsearch6_server_hostname' => 'elasticsearch',
-                    'elasticsearch6_server_port' => '9200',
-                    'elasticsearch6_index_prefix' => 'magento2',
-                    'elasticsearch6_enable_auth' => '0',
-                    'elasticsearch6_server_timeout' => '15'
-                ],
                 'productalert_cron' => [
                     'error_email' => null
+                ],
+                'search' => [
+                    'engine' => 'elasticsearch7',
+                    'elasticsearch7_server_hostname' => 'elasticsearch',
+                    'elasticsearch7_server_port' => '9200'
                 ]
             ],
             'cataloginventory' => [

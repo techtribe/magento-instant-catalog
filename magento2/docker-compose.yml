@@ -26,7 +26,7 @@ services:
     networks:
       - magento
   elasticsearch:
-    image: 'magento/magento-cloud-docker-elasticsearch:6.5-1.0'
+    image: 'magento/magento-cloud-docker-elasticsearch:7.6-1.2'
     networks:
       - magento
   fpm:
@@ -118,7 +118,7 @@ services:
       - MAGENTO_CLOUD_ROUTES=eyJodHRwOlwvXC9tYWdlbnRvMi5kb2NrZXJcLyI6eyJ0eXBlIjoidXBzdHJlYW0iLCJvcmlnaW5hbF91cmwiOiJodHRwOlwvXC97ZGVmYXVsdH0ifSwiaHR0cHM6XC9cL21hZ2VudG8yLmRvY2tlclwvIjp7InR5cGUiOiJ1cHN0cmVhbSIsIm9yaWdpbmFsX3VybCI6Imh0dHBzOlwvXC97ZGVmYXVsdH0ifX0=
       - MAGENTO_CLOUD_VARIABLES=eyJBRE1JTl9FTUFJTCI6ImFkbWluQGV4YW1wbGUuY29tIiwiQURNSU5fUEFTU1dPUkQiOiIxMjMxMjNxIiwiQURNSU5fVVJMIjoiYWRtaW4ifQ==
       - MAGENTO_RUN_MODE=developer
-      - 'PHP_EXTENSIONS=bcmath bz2 calendar exif gd gettext intl mysqli pcntl pdo_mysql soap sockets sysvmsg sysvsem sysvshm opcache zip redis xsl sodium xdebug'
+      - 'PHP_EXTENSIONS=bcmath bz2 calendar exif gd gettext intl mysqli pcntl pdo_mysql soap sockets sysvmsg sysvsem sysvshm opcache zip redis xsl sodium'
   cron:
     image: 'magento/magento-cloud-docker-php:7.3-cli-1.0'
     extends: generic
@@ -137,6 +137,17 @@ services:
     environment:
       CRONTAB: '* * * * * root cd /app && /usr/local/bin/php bin/magento cron:run >> /app/var/log/cron.log'
     command: run-cron
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.6.2
+    networks:
+        - magento
+    ports:
+        - '5601:5601'
+    depends_on:
+        - elasticsearch
+    environment:
+#      SERVER_NAME: kibana.magento2.docker
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
 volumes:
   magento-sync: {  }
   magento-db: {  }
