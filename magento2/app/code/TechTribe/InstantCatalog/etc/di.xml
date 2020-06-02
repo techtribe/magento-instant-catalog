@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="TechTribe\InstantCatalog\Api\TestApiManagementInterface" type="TechTribe\InstantCatalog\Model\TestApiManagement" />
+    <preference for="TechTribe\InstantCatalog\Api\Data\TestApiInterface" type="TechTribe\InstantCatalog\Model\TestApi" />
+    <preference for="Magento\AdvancedSearch\Model\SuggestedQueriesInterface" type="TechTribe\InstantCatalog\Model\SearchData" />
+    <preference for="Magento\AdvancedSearch\Model\Client\ClientFactoryInterface" type="Magento\AdvancedSearch\Model\Client\ClientFactory" />
+    <type name="TechTribe\InstantCatalog\Model\SearchData">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="mysql" xsi:type="string">Magento\AdvancedSearch\Model\DataProvider\Suggestions</item>
+                <!-- TODO: ElasticSearch dataproviders should not have to be set explicitly. -->
+<!--                <item name="elasticsearch" xsi:type="string">Magento\Elasticsearch\Model\DataProvider\Suggestions</item>-->
+<!--                <item name="elasticsearch5" xsi:type="string">Magento\Elasticsearch\Model\DataProvider\Suggestions</item>-->
+<!--                <item name="elasticsearch6" xsi:type="string">Magento\Elasticsearch\Model\DataProvider\Suggestions</item>-->
+<!--                <item name="elasticsearch7" xsi:type="string">Magento\Elasticsearch\Model\DataProvider\Suggestions</item>-->
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedSearch\Model\Client\ClientResolver">
+        <arguments>
+            <argument name="path" xsi:type="const">Magento\CatalogSearch\Model\ResourceModel\EngineInterface::CONFIG_ENGINE_PATH</argument>
+            <argument name="scopeType" xsi:type="const">\Magento\Store\Model\ScopeInterface::SCOPE_STORE</argument>
+        </arguments>
+    </type>
+</config>

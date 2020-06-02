@@ -32,7 +32,13 @@
         "magento/module-widget-sample-data": "100.3.*",
         "magento/module-wishlist-sample-data": "100.3.*",
         "magento/product-community-edition": "2.3.5-p1",
-        "magento/sample-data-media": "100.3.*"
+        "magento/sample-data-media": "100.3.*",
+        "magento/framework": "102.0.*",
+        "magento/module-advanced-search": "100.3.*",
+        "magento/module-catalog-search": "101.0.*",
+        "magento/module-search": "101.0.*",
+        "magento/module-elasticsearch": "100.3.*",
+        "elasticsearch/elasticsearch": "~2.0||~5.1||~6.1||~7.6"
     },
     "require-dev": {
         "allure-framework/allure-phpunit": "~1.2.0",

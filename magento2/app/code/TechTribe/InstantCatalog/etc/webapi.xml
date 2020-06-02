@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- test api Group -->
+    <route url="/V1/instant/products/:id" method="GET">
+        <service class="TechTribe\InstantCatalog\Api\TestApiManagementInterface" method="getApiData"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+</routes>
