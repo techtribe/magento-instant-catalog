@@ -5,6 +5,7 @@
         <sequence>
             <module name="Magento_Search"/>
             <module name="Magento_Elasticsearch"/>
+            <module name="Magento_AdvancedSearch"/>
         </sequence>
     </module>
 </config>

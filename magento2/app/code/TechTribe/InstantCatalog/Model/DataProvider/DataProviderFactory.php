@@ -1,16 +1,13 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-namespace TechTribe\InstantCatalog\Model;
 
+namespace TechTribe\InstantCatalog\Model\DataProvider;
+
+use Exception;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\Search\EngineResolverInterface;
-use Magento\Search\Model\QueryInterface;
-use Magento\AdvancedSearch\Model\SuggestedQueriesInterface;
+use TechTribe\InstantCatalog\Api\DataProvider\ProductCollectionInterface;
 
-class SearchData implements SuggestedQueriesInterface
+class DataProviderFactory
 {
     /**
      * @var EngineResolverInterface
@@ -23,14 +20,14 @@ class SearchData implements SuggestedQueriesInterface
     private $objectManager;
 
     /**
-     * Array of SuggestedQueriesInterface class names.
+     * Array of ProductCollectionInterface class names.
      *
      * @var array
      */
     private $data;
 
     /**
-     * @var SuggestedQueriesInterface
+     * @var ProductCollectionInterface
      */
     private $dataProvider;
 
@@ -52,35 +49,19 @@ class SearchData implements SuggestedQueriesInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function isResultsCountEnabled()
-    {
-        return $this->getDataProvider()->isResultsCountEnabled();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getItems(QueryInterface $query)
-    {
-        return $this->getDataProvider()->getItems($query);
-    }
-
-    /**
-     * Returns DataProvider for SuggestedQueries
+     * Returns DataProvider for ProductCollection
      *
-     * @return SuggestedQueriesInterface|SuggestedQueriesInterface[]
-     * @throws \Exception
+     * @return ProductCollectionInterface|ProductCollectionInterface[]
+     * @throws Exception
      */
-    private function getDataProvider()
+    public function getDataProvider()
     {
         if (empty($this->dataProvider)) {
             $currentEngine = $this->engineResolver->getCurrentSearchEngine();
             $this->dataProvider = $this->objectManager->create($this->data[$currentEngine]);
-            if (!$this->dataProvider instanceof SuggestedQueriesInterface) {
+            if (!$this->dataProvider instanceof ProductCollectionInterface) {
                 throw new \InvalidArgumentException(
-                    'Data provider must implement \Magento\AdvancedSearch\Model\SuggestedQueriesInterface'
+                    'Data provider must implement TechTribe\InstantCatalog\Api\DataProvider\ProductCollectionInterface'
                 );
             }
         }

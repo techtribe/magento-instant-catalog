@@ -35,7 +35,7 @@ bin/magento-docker bash
 bin/magento admin:user:create
 ```
 ### Kibana
-If you want to know what is going on within ElasticSearch, Kibana is installed and can be reached here: https://magento2.docker:5601.
+If you want to know what is going on within ElasticSearch, Kibana is installed and can be reached here: http://magento2.docker:5601.
 
 For more information check https://www.elastic.co/guide/en/kibana/current/getting-started.html or use Google.
 
